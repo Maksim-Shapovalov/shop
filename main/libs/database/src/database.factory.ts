@@ -4,7 +4,7 @@ import {
   type TypeOrmOptionsFactory,
   type TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
-import { User } from 'libs/entities/src';
+import { Category, Orders, Product, User } from 'libs/entities/src';
 
 @Injectable()
 export class DatabaseFactory implements TypeOrmOptionsFactory {
@@ -18,7 +18,7 @@ export class DatabaseFactory implements TypeOrmOptionsFactory {
       username: this.configService.getOrThrow('DATABASE_USERNAME'),
       password: this.configService.getOrThrow('DATABASE_PASSWORD'),
       database: this.configService.getOrThrow('DATABASE_NAME'),
-      entities: [User],
+      entities: [User, Orders, Category, Product],
       synchronize: true,
     };
   }

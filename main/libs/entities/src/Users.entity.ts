@@ -1,6 +1,8 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from './base';
 import { userRoles } from './enum';
+import { Orders } from './Order.entity';
+import { Product } from './Product.entity';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -27,4 +29,10 @@ export class User extends BaseEntity {
 
   @Column({ nullable: false })
   password: string;
+
+  @OneToMany(() => Product, (prod) => prod.user)
+  favorites: Product[];
+
+  @OneToMany(() => Orders, (order) => order.user)
+  orders: Orders[];
 }

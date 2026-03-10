@@ -6,7 +6,6 @@ export const Jwt = createParamDecorator(
   (data: string | undefined, context: ExecutionContext) => {
     const request = context.switchToHttp().getRequest<Request>();
     const payload = (request as any).user as JwtPayload;
-    console.log(payload);
 
     if (data) {
       return payload[data] as Record<string, unknown>;
